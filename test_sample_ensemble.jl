@@ -40,14 +40,14 @@ for i ∈ 1:10
     xₒ[7] = training_df[i, :XI]         # 7 FXI
     xₒ[8] = training_df[i, :XII]        # 8 FXII 
     xₒ[9] = (1e-14)*SF                  # 9 FIIa
-    xₒ[18] = (1e-6)*SF                 # 18 PL
+    xₒ[18] = 1e3                        # 18 PL
     dd.initial_condition_array = xₒ
 
     # update α -
     α = dd.α
     α[1] = 1.
     α[9] = 0.70
-   # α[10] = 
+    #α[10] = 0.5 
 
     # setup -
     G = dd.G
@@ -62,6 +62,9 @@ for i ∈ 1:10
     # what is the index of TFPI?
     idx = findfirst(x->x=="TFPI",dd.total_species_list)
     G[idx, 1] = -0.65
+
+    # TRAUMA
+   # idx = findfirst(x->x=="")
 
     # run the model -
     global (T,U) = evaluate(dd)
