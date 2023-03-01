@@ -27,6 +27,7 @@ for i ∈ 1:10
     sfa[2] = training_df[i,:AT]         # 2 AT
     sfa[3] = (5e-12) * SF               # 3 TF
     sfa[6] = 0.005                      # 6 TRAUMA
+ #   sfa[7] = 0.001                      # 7 SURFACE
 
     # grab the multiplier from the data -
     ℳ = dd.number_of_dynamic_states
@@ -62,9 +63,6 @@ for i ∈ 1:10
     # what is the index of TFPI?
     idx = findfirst(x->x=="TFPI",dd.total_species_list)
     G[idx, 1] = -0.65
-
-    # TRAUMA
-   # idx = findfirst(x->x=="")
 
     # run the model -
     global (T,U) = evaluate(dd)
